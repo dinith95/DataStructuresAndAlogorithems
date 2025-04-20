@@ -34,6 +34,7 @@ class LinkedList:
             self.tail = new_node  # set the tail to the new node
         self.length += 1
 
+# remove the last node from the linked list
     def pop(self):
 
         if self.length == 0:
@@ -41,7 +42,7 @@ class LinkedList:
         current = self.head
 
         # if there is only one node in the linked list
-        if self.tail == self.tail:
+        if self.head == self.tail:
             lastNode = self.tail  # store the last node before reassigning the tail
             self.tail = None
             self.head = None
@@ -59,9 +60,26 @@ class LinkedList:
 
             current = current.next
 
+# add a node to the beginning of the linked list
+    def prepend(self, value):
+        new_node = Node(value)
+
+        # if the linked list is empty, set the head and tail to the new node
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+            self.length += 1
+            return
+
+        new_node.next = self.head  # set the next pointer of the new node to the current head
+        self.head = new_node  # set the head to the new node
+        self.length += 1
+        return
+
 
 list = LinkedList(5)
-# list.append(10)
-# list.append(15)
-print(list.pop())  # call pop method and print the returned value
+list.append(10)
+list.append(15)
+list.prepend(1)
+# print(list.pop())  # call pop method and print the returned value
 list.printList()
