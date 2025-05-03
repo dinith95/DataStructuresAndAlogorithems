@@ -117,4 +117,32 @@ public class LinkedListTests
         Assert.That(lastNode2, Is.Null);
 
     }
+
+    [Test]
+    public void WhenGet_ShoulReturnExpectedNode()
+    {
+        var linkeList = new CustomLinkedList(5);
+        linkeList.Append(10);
+        linkeList.Append(15);
+
+        var node = linkeList.GetNode(1);
+        var node2 = linkeList.GetNode(3);
+
+        Assert.That(node, Is.Not.Null);
+        Assert.That(node.Value, Is.EqualTo(10));
+
+        Assert.That(node2, Is.Null);
+    }
+
+    [Test]
+    public void WhenGetInEdgeCases_ShouldReturnNull()
+    {
+        var linkeList = new CustomLinkedList(5);
+
+        linkeList.Pop();
+
+        var node = linkeList.GetNode(0);
+
+        Assert.That(node, Is.Null);
+    }
 }

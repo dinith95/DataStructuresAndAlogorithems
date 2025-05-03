@@ -1,5 +1,4 @@
-﻿using System.Security;
-using System.Text;
+﻿using System.Text;
 
 namespace DataStructures;
 
@@ -83,11 +82,11 @@ public class CustomLinkedList
         return firstItem;
     }
 
-        public Node Pop()
+    public Node Pop()
     {
         var current = Head;
 
-        if(Head == null)
+        if (Head == null)
         {
             return null;
         }
@@ -110,7 +109,28 @@ public class CustomLinkedList
         return last;
     }
 
-        public string PrintList()
+    public Node? GetNode(int index)
+    {
+        if(index < 0 || Head == null )
+        {
+            return null;
+        }
+
+        var current = Head;
+        var count = 0;
+        while (current != null)
+        {
+            if (count == index)
+            {
+                return current;
+            }
+            count++;
+            current = current.Next;
+        }
+        return null;
+    }
+
+    public string PrintList()
     {
         var current = Head;
         var result = new StringBuilder();
