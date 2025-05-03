@@ -83,6 +83,26 @@ public class LinkedListTests
         Assert.That(linkeList.PrintList(), Is.EqualTo("5,20,15,"));
     }
 
+    [Test]
+    public void WhenSetValueInEdgeCase_ShouldReturnAsExpected()
+    {
+        var linkedList = new CustomLinkedList(5);
+        linkedList.Append(10);
+        linkedList.Append(15);
+
+        var node = linkedList.RemoveNode(1);
+
+        Assert.That(node, Is.Not.Null);
+        Assert.That(node.Value, Is.EqualTo(10));
+        Assert.That(linkedList.PrintList(), Is.EqualTo("5,15,"));
+
+        var node2 = linkedList.RemoveNode(1);
+
+        Assert.That(node2, Is.Not.Null);
+        Assert.That(node2.Value, Is.EqualTo(15));
+        Assert.That(linkedList.PrintList(), Is.EqualTo("5,"));
+    }
+
         [Test]
     public void WhenPopFirst_ShouldReturnAsExpected()
     {

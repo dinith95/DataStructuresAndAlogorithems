@@ -28,10 +28,14 @@ public class CustomLinkedList
 
     public Node Tail { get; private set; }
 
+    public int Length { get; private set; }
+    
+
     public CustomLinkedList(int value)
     {
         Head = new Node(value);
         Tail = Head;
+        Length = 1;
     }
 
     public void Append(int value)
@@ -46,6 +50,7 @@ public class CustomLinkedList
             Tail.Next = new Node(value);
             Tail = Tail.Next;
         }
+        Length++;
     }
 
     public void Prepend(int value)
@@ -60,6 +65,7 @@ public class CustomLinkedList
             var newNode = new Node(value, Head);
             Head = newNode;
         }
+        Length++;
     }
 
     public void InsertNode(int index, int value)
@@ -80,6 +86,7 @@ public class CustomLinkedList
        var newNode = new Node(value, prevNode.Next);
 
         prevNode.Next = newNode;
+        Length++;
 
     }
 
@@ -101,6 +108,28 @@ public class CustomLinkedList
         {
             return false;
         }
+    }
+
+    public Node? RemoveNode(int index)
+    {
+        if (index < 0 || Head == null || index >= Length)
+        {
+            return null;
+        }
+
+        if (index == 0)
+        {
+            var temp = Head;
+            Head = Head.Next;
+            return temp;
+        }
+
+       var prevNode = GetNode(index - 1);
+
+       var currentNode = prevNode.Next;
+
+        prevNode.Next = currentNode.Next;
+        return currentNode;
     }
 
     public Node? PopFirst()
