@@ -62,6 +62,47 @@ public class CustomLinkedList
         }
     }
 
+    public void InsertNode(int index, int value)
+    {
+        if (index < 0 || Head == null)
+        {
+            return;
+        }
+
+        if (index == 0)
+        {
+            Prepend(value);
+            return;
+        }
+
+       var prevNode = GetNode(index-1);
+
+       var newNode = new Node(value, prevNode.Next);
+
+        prevNode.Next = newNode;
+
+    }
+
+    public bool SetValue(int index, int value)
+    {
+        if (index < 0 || Head == null)
+        {
+            return false;
+        }
+
+        var node = GetNode(index);
+
+        if(node != null)
+        {
+            node.Value = value;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public Node? PopFirst()
     {
         if (Head == null)

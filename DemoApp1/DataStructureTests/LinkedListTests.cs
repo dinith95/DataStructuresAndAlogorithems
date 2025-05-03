@@ -48,6 +48,42 @@ public class LinkedListTests
     }
 
     [Test]
+    public void WhenInsertAt_ShouldReturnAsExpected()
+    {
+        var linkeList = new CustomLinkedList(5);
+        linkeList.Append(10);
+        linkeList.Append(15);
+
+        linkeList.InsertNode(1,7);
+        var node = linkeList.GetNode(1);
+
+        Assert.That(node, Is.Not.Null);
+        Assert.That(node.Value, Is.EqualTo(7));
+        Assert.That(linkeList.PrintList(), Is.EqualTo("5,7,10,15,"));
+
+        linkeList.InsertNode(4, 20);
+
+        var node2 = linkeList.GetNode(4);
+        Assert.That(node2, Is.Not.Null);
+        Assert.That(node2.Value, Is.EqualTo(20));
+        Assert.That(linkeList.PrintList(), Is.EqualTo("5,7,10,15,20,"));
+    }
+
+    [Test]
+    public void WhenSetValue_ShouldReturnAsExpected()
+    {
+        var linkeList = new CustomLinkedList(5);
+        linkeList.Append(10);
+        linkeList.Append(15);
+
+        linkeList.SetValue(1, 20);
+        var node = linkeList.GetNode(1);
+
+        Assert.That(node.Value, Is.EqualTo(20));
+        Assert.That(linkeList.PrintList(), Is.EqualTo("5,20,15,"));
+    }
+
+        [Test]
     public void WhenPopFirst_ShouldReturnAsExpected()
     {
         var linkeList = new CustomLinkedList(5);
