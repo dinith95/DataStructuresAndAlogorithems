@@ -49,7 +49,41 @@ public class CustomLinkedList
         }
     }
 
-    public Node Pop()
+    public void Prepend(int value)
+    {
+        if (Head == null)
+        {
+            Head = new Node(value);
+            Tail = Head;
+        }
+        else
+        {
+            var newNode = new Node(value, Head);
+            Head = newNode;
+        }
+    }
+
+    public Node? PopFirst()
+    {
+        if (Head == null)
+        {
+            return null;
+        }
+
+        if (Head == Tail)
+        {
+            var temp = Head;
+            Head = null;
+            Tail = null;
+            return temp;
+        }
+
+        var firstItem = Head;
+        Head = Head.Next;
+        return firstItem;
+    }
+
+        public Node Pop()
     {
         var current = Head;
 
