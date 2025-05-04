@@ -217,6 +217,51 @@ public class CustomLinkedList
         return slow;
     }
 
+    public bool HasLoop()
+    {
+        if (Head == null) 
+            return false;
+
+        var slow = Head;
+        var fast = Head;
+
+        while (fast != null && fast.Next != null)
+        {
+            slow = slow.Next;
+            fast = fast.Next?.Next;
+
+            if (slow == fast)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public bool HasLoopWithHashSet()
+    {
+        if (Head == null)
+            return false;
+
+        var current = Head;
+        
+        var visitedNodes = new HashSet<int>();
+
+        while (current != null)
+        {
+            var nodeHash = current.GetHashCode();
+            if (visitedNodes.Contains(nodeHash))
+            {
+                return true;
+            }
+            visitedNodes.Add(nodeHash);
+            current = current.Next;
+        }
+
+        return false;
+    }
+
     public CustomLinkedList Reverse()
     {
         if (Head == null)

@@ -252,4 +252,28 @@ public class LinkedListTests
         Assert.That(middleNode, Is.Not.Null);
         Assert.That(middleNode.Value, Is.EqualTo(20));
     }
+
+    [Test]
+    public void WhenHasLoopIsCalled_ShouldReturnFalse()
+    {
+        var linkeList = new CustomLinkedList(5);
+        linkeList.Append(10);
+        linkeList.Append(15);
+        linkeList.Append(20);
+
+        Assert.That(linkeList.HasLoop(), Is.False);
+    }
+
+    [Test]
+    public void WhenHasLoopIsCalled_ShouldReturnTrue()
+    {
+        var linkeList = new CustomLinkedList(5);
+        linkeList.Append(10);
+        linkeList.Append(15);
+        linkeList.Append(20);
+
+        linkeList.Tail.Next = linkeList.Head;
+
+        Assert.That(linkeList.HasLoop(), Is.True);
+    }
 }
