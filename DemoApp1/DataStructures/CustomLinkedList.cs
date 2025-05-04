@@ -129,6 +129,7 @@ public class CustomLinkedList
        var currentNode = prevNode.Next;
 
         prevNode.Next = currentNode.Next;
+        currentNode.Next = null;
         return currentNode;
     }
 
@@ -152,7 +153,7 @@ public class CustomLinkedList
         return firstItem;
     }
 
-    public Node Pop()
+    public Node? Pop()
     {
         var current = Head;
 
@@ -198,6 +199,50 @@ public class CustomLinkedList
             current = current.Next;
         }
         return null;
+    }
+
+    public Node? GetMiddleNode()
+    {
+        if (Head == null) return null;
+
+        var slow = Head;
+        var fast = Head;
+
+        while (fast != null && fast.Next != null)
+        {
+            slow = slow.Next;
+            fast = fast.Next?.Next;
+        }
+
+        return slow;
+    }
+
+    public CustomLinkedList Reverse()
+    {
+        if (Head == null)
+        {
+            return null;
+        }
+
+        Node? prev = null;
+        var current = Head;
+        var next = Head.Next;
+
+        while (current != null)
+        {
+            current.Next = prev;
+            prev = current;
+            current = next;
+            next= next?.Next;
+
+        }
+
+        // swapping head and tail
+        var temp = Head;
+        Head = Tail;
+        Tail = temp;
+        return this;
+
     }
 
     public string PrintList()

@@ -84,7 +84,7 @@ public class LinkedListTests
     }
 
     [Test]
-    public void WhenSetValueInEdgeCase_ShouldReturnAsExpected()
+    public void WhenRemoveNode_ShouldReturnAsExpected()
     {
         var linkedList = new CustomLinkedList(5);
         linkedList.Append(10);
@@ -94,12 +94,14 @@ public class LinkedListTests
 
         Assert.That(node, Is.Not.Null);
         Assert.That(node.Value, Is.EqualTo(10));
+        Assert.That(node.Next, Is.Null);
         Assert.That(linkedList.PrintList(), Is.EqualTo("5,15,"));
 
         var node2 = linkedList.RemoveNode(1);
 
         Assert.That(node2, Is.Not.Null);
         Assert.That(node2.Value, Is.EqualTo(15));
+        Assert.That(node2.Next, Is.Null);
         Assert.That(linkedList.PrintList(), Is.EqualTo("5,"));
     }
 
@@ -200,5 +202,54 @@ public class LinkedListTests
         var node = linkeList.GetNode(0);
 
         Assert.That(node, Is.Null);
+    }
+
+    [Test]
+    public void WhenReverese_ShouldRevereseList()
+    {
+        var linkeList = new CustomLinkedList(5);
+        linkeList.Append(10);
+        linkeList.Append(15);
+        linkeList.Append(20);
+
+        var reversedList = linkeList.Reverse();
+
+        Assert.That(reversedList.Head, Is.Not.Null);
+        Assert.That(reversedList.Tail, Is.Not.Null);
+
+        Assert.That(reversedList.Head.Value, Is.EqualTo(20));
+        Assert.That(reversedList.Tail.Value, Is.EqualTo(5));
+        Assert.That(reversedList.PrintList(), Is.EqualTo("20,15,10,5,"));
+    }
+
+    [Test]
+    public void WhenGetMiddleInOddLengthLinkedList_ShouldReturnMiddleNode()
+    {
+        var linkeList = new CustomLinkedList(5);
+        linkeList.Append(10);
+        linkeList.Append(15);
+        linkeList.Append(20);
+        linkeList.Append(25);
+
+        var middleNode = linkeList.GetMiddleNode();
+
+        Assert.That(middleNode, Is.Not.Null);
+        Assert.That(middleNode.Value, Is.EqualTo(15));
+    }
+
+    [Test]
+    public void WhenGetMiddleInEvenLengthLinkedList_ShouldReturnMiddleNode()
+    {
+        var linkeList = new CustomLinkedList(5);
+
+        for (int i = 10; i <= 30; i += 5)
+        {
+            linkeList.Append(i);
+        }
+
+        var middleNode = linkeList.GetMiddleNode();
+
+        Assert.That(middleNode, Is.Not.Null);
+        Assert.That(middleNode.Value, Is.EqualTo(20));
     }
 }
