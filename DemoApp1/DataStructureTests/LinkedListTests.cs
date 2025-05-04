@@ -276,4 +276,23 @@ public class LinkedListTests
 
         Assert.That(linkeList.HasLoop(), Is.True);
     }
+
+    [Test]
+    public void WhenFindNodeFromEnd_ShouldReturnExpectedNode()
+    {
+        var linkeList = new CustomLinkedList(5);
+        linkeList.Append(10);
+        linkeList.Append(15);
+        linkeList.Append(20);
+        linkeList.Append(25);
+
+        var node = linkeList.GetNodeFromEnd(2);
+
+        Assert.That(node, Is.Not.Null);
+        Assert.That(node.Value, Is.EqualTo(20));
+
+        var node2 = linkeList.GetNodeFromEnd(5);
+        Assert.That(node2, Is.Not.Null);
+        Assert.That(node2.Value, Is.EqualTo(5));
+    }
 }

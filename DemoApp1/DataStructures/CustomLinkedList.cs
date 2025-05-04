@@ -290,6 +290,25 @@ public class CustomLinkedList
 
     }
 
+    public Node GetNodeFromEnd(int index)
+    {
+        if (Head == null || index < 0)
+        {
+            return null;
+        }
+
+        var current = Head;
+        var secondary = GetNode(index-1);
+
+        while(secondary.Next != null)
+        {
+            current = current.Next;
+            secondary = secondary.Next;
+        }
+
+        return current;
+    }
+
     public string PrintList()
     {
         var current = Head;
