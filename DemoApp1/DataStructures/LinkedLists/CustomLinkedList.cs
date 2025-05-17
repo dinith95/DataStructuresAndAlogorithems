@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace DataStructures;
+namespace DataStructures.LinkedLists;
 
 public class Node
 {
@@ -29,7 +29,7 @@ public class CustomLinkedList
     public Node Tail { get; private set; }
 
     public int Length { get; private set; }
-    
+
 
     public CustomLinkedList(int value)
     {
@@ -81,9 +81,9 @@ public class CustomLinkedList
             return;
         }
 
-       var prevNode = GetNode(index-1);
+        var prevNode = GetNode(index - 1);
 
-       var newNode = new Node(value, prevNode.Next);
+        var newNode = new Node(value, prevNode.Next);
 
         prevNode.Next = newNode;
         Length++;
@@ -99,7 +99,7 @@ public class CustomLinkedList
 
         var node = GetNode(index);
 
-        if(node != null)
+        if (node != null)
         {
             node.Value = value;
             return true;
@@ -124,9 +124,9 @@ public class CustomLinkedList
             return temp;
         }
 
-       var prevNode = GetNode(index - 1);
+        var prevNode = GetNode(index - 1);
 
-       var currentNode = prevNode.Next;
+        var currentNode = prevNode.Next;
 
         prevNode.Next = currentNode.Next;
         currentNode.Next = null;
@@ -182,7 +182,7 @@ public class CustomLinkedList
 
     public Node? GetNode(int index)
     {
-        if(index < 0 || Head == null )
+        if (index < 0 || Head == null)
         {
             return null;
         }
@@ -219,7 +219,7 @@ public class CustomLinkedList
 
     public bool HasLoop()
     {
-        if (Head == null) 
+        if (Head == null)
             return false;
 
         var slow = Head;
@@ -245,7 +245,7 @@ public class CustomLinkedList
             return false;
 
         var current = Head;
-        
+
         var visitedNodes = new HashSet<int>();
 
         while (current != null)
@@ -278,7 +278,7 @@ public class CustomLinkedList
             current.Next = prev;
             prev = current;
             current = next;
-            next= next?.Next;
+            next = next?.Next;
 
         }
 
@@ -298,15 +298,45 @@ public class CustomLinkedList
         }
 
         var current = Head;
-        var secondary = GetNode(index-1);
+        var secondary = GetNode(index - 1);
 
-        while(secondary.Next != null)
+        while (secondary.Next != null)
         {
             current = current.Next;
             secondary = secondary.Next;
         }
 
         return current;
+    }
+
+    public void RemoveDuplicates()
+    {
+        if (Head == null)
+        {
+            return;
+        }
+        var current = Head;
+        var prev = Head;
+
+        var values = new HashSet<int>();
+
+        while (current != null)
+        {
+            if (values.Contains(current.Value))
+            {
+                prev.Next = current.Next;
+                var temp = current;
+                current = current.Next;
+                temp.Next = null;
+            }
+            else
+            {
+                values.Add(current.Value);
+                prev = current;
+                current = current.Next;
+            }
+
+        }
     }
 
     public string PrintList()

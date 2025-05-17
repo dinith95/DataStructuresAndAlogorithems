@@ -1,6 +1,6 @@
 using DataStructures;
 
-namespace DataStructureTests;
+namespace DataStructureTests.LinkedListTests;
 
 public class LinkedListTests
 
@@ -54,7 +54,7 @@ public class LinkedListTests
         linkeList.Append(10);
         linkeList.Append(15);
 
-        linkeList.InsertNode(1,7);
+        linkeList.InsertNode(1, 7);
         var node = linkeList.GetNode(1);
 
         Assert.That(node, Is.Not.Null);
@@ -105,7 +105,7 @@ public class LinkedListTests
         Assert.That(linkedList.PrintList(), Is.EqualTo("5,"));
     }
 
-        [Test]
+    [Test]
     public void WhenPopFirst_ShouldReturnAsExpected()
     {
         var linkeList = new CustomLinkedList(5);
@@ -140,7 +140,7 @@ public class LinkedListTests
         Assert.That(node2, Is.Null);
     }
 
-        [Test]
+    [Test]
     public void WhenPop_ShouldReturnAsExpected()
     {
         var linkeList = new CustomLinkedList(5);
@@ -151,7 +151,7 @@ public class LinkedListTests
 
         Assert.That(linkeList.Head, Is.Not.Null);
         Assert.That(linkeList.Tail, Is.Not.Null);
-        Assert.That(lastNode.Value, Is.EqualTo(15));    
+        Assert.That(lastNode.Value, Is.EqualTo(15));
         Assert.That(linkeList.Head.Value, Is.EqualTo(5));
         Assert.That(linkeList.Tail.Value, Is.EqualTo(10));
         Assert.That(linkeList.PrintList(), Is.EqualTo("5,10,"));
@@ -294,5 +294,22 @@ public class LinkedListTests
         var node2 = linkeList.GetNodeFromEnd(5);
         Assert.That(node2, Is.Not.Null);
         Assert.That(node2.Value, Is.EqualTo(5));
+    }
+
+
+    [Test]
+    public void WhenRemoveDuplicates_ShouldReturnExpectedList()
+    {
+        var linkeList = new CustomLinkedList(5);
+        linkeList.Append(10);
+        linkeList.Append(15);
+        linkeList.Append(10); // duplicate
+        linkeList.Append(20);
+        linkeList.Append(15); // duplicate
+        linkeList.Append(25);
+
+        linkeList.RemoveDuplicates();
+
+        Assert.That(linkeList.PrintList(), Is.EqualTo("5,10,15,20,25,"));
     }
 }
