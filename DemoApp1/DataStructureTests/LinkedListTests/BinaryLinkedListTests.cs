@@ -1,4 +1,5 @@
 ﻿using DataStructures;
+using DataStructures.LinkedLists;
 
 namespace DataStructureTests.LinkedListTests;
 
