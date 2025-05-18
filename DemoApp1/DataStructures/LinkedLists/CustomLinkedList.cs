@@ -24,9 +24,9 @@ public class Node
 
 public class CustomLinkedList
 {
-    public Node Head { get; private set; }
+    public Node Head { get; protected set; }
 
-    public Node Tail { get; private set; }
+    public Node Tail { get; protected set; }
 
     public int Length { get; private set; }
 

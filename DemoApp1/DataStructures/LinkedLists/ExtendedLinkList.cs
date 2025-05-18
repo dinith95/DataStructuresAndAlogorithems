@@ -96,4 +96,43 @@ public class ExtendedLinkList : CustomLinkedList
 
         }
     }
+
+    public void Partition(int x)
+    {
+        if (Head == null)
+            return;
+
+        // create 2 dummy nodes 
+        // tn1 for less than x
+        var tn1 = new Node(0);
+        var prev1 = tn1;
+
+        // tn2 for greater than or equal to x
+        var tn2 = new Node(0);
+        var prev2 = tn2;
+
+        var current = Head;
+
+        while (current != null)
+        {
+            if (current.Value < x)
+            {
+                prev1.Next = new Node(current.Value);
+                prev1 = prev1.Next;
+            }
+            else
+            {
+                prev2.Next = new Node(current.Value);
+                prev2 = prev2.Next;
+            }
+            current = current.Next;
+        }
+
+        prev1.Next = tn2.Next;
+
+        Head = tn1.Next;
+        Tail = prev2;
+        tn1 = null;
+        tn2 = null;
+    }
 }

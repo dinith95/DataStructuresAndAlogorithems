@@ -80,7 +80,7 @@ public class LinkedListTests
         linkeList.SetValue(1, 20);
         var node = linkeList.GetNode(1);
 
-        Assert.That(node.Value, Is.EqualTo(20));
+        Assert.That(node?.Value, Is.EqualTo(20));
         Assert.That(linkeList.PrintList(), Is.EqualTo("5,20,15,"));
     }
 
@@ -117,7 +117,7 @@ public class LinkedListTests
 
         Assert.That(linkeList.Head, Is.Not.Null);
         Assert.That(linkeList.Tail, Is.Not.Null);
-        Assert.That(firstNode.Value, Is.EqualTo(5));
+        Assert.That(firstNode?.Value, Is.EqualTo(5));
         Assert.That(linkeList.Head.Value, Is.EqualTo(10));
         Assert.That(linkeList.PrintList(), Is.EqualTo("10,15,"));
     }
@@ -132,7 +132,7 @@ public class LinkedListTests
         Assert.That(linkeList.Head, Is.Null);
         Assert.That(linkeList.Tail, Is.Null);
 
-        Assert.That(node.Value, Is.EqualTo(5));
+        Assert.That(node?.Value, Is.EqualTo(5));
 
         var node2 = linkeList.PopFirst();
 
@@ -152,7 +152,7 @@ public class LinkedListTests
 
         Assert.That(linkeList.Head, Is.Not.Null);
         Assert.That(linkeList.Tail, Is.Not.Null);
-        Assert.That(lastNode.Value, Is.EqualTo(15));
+        Assert.That(lastNode?.Value, Is.EqualTo(15));
         Assert.That(linkeList.Head.Value, Is.EqualTo(5));
         Assert.That(linkeList.Tail.Value, Is.EqualTo(10));
         Assert.That(linkeList.PrintList(), Is.EqualTo("5,10,"));
@@ -167,7 +167,7 @@ public class LinkedListTests
 
         Assert.That(linkeList.Head, Is.Null);
         Assert.That(linkeList.Tail, Is.Null);
-        Assert.That(lastNode.Value, Is.EqualTo(5));
+        Assert.That(lastNode?.Value, Is.EqualTo(5));
 
         var lastNode2 = linkeList.Pop();
 

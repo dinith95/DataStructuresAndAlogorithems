@@ -1,9 +1,4 @@
 ﻿using DataStructures.LinkedLists;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataStructureTests.LinkedListTests;
 
@@ -78,5 +73,23 @@ internal class ExtendedLinkedListTests
         linkeList.RemoveDuplicates();
 
         Assert.That(linkeList.PrintList(), Is.EqualTo("5,10,15,20,25,"));
+    }
+
+    [Test]
+    public void WhenPartitionIsCalled_ShouldReturnExpectedList()
+    {
+        var linkeList = new ExtendedLinkList(30);
+        linkeList.Append(10);
+        linkeList.Append(25);
+        linkeList.Append(20); // starting partition
+        linkeList.Append(15);
+        linkeList.Append(5);
+
+        linkeList.Partition(20);
+
+
+        Assert.That(linkeList.Head.Value, Is.EqualTo(10));
+        Assert.That(linkeList.Tail.Value, Is.EqualTo(20));
+        Assert.That(linkeList.PrintList(), Is.EqualTo("10,15,5,30,25,20,"));
     }
 }
